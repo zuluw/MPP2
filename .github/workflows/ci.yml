@@ -24,12 +24,12 @@ jobs:
 
       - name: Install backend dependencies
         run: |
-          cd server
+          cd issue-tracker/server
           npm install
 
       - name: Run automated test suite
         run: |
-          cd server
+          cd issue-tracker/server
           npm test
 
   build-frontend:
@@ -49,10 +49,10 @@ jobs:
 
       - name: Install frontend dependencies
         run: |
-          cd client
+          cd issue-tracker/client
           npm install
 
       - name: Build React SPA
         run: |
-          cd client
+          cd issue-tracker/client
           npm run build
