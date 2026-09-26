@@ -1,13 +1,15 @@
 # Issue Tracker
 
-A Single Page Application (SPA) with a REST API backend and Docker containerization. This project was developed as part of Laboratory Work #2.
+A Single Page Application (SPA) with a REST API backend, Role-Based Access Control (RBAC), structured logging, security features, and automated CI/CD.
 
 ## Technology Stack
-- Frontend: React 18 (Vite)
-- Web Server (Frontend): Nginx (Alpine)
+- Frontend: React 18 (Vite), Nginx (Alpine)
 - Backend: Node.js, Express.js
 - Database: SQLite3
-- File Handling: Multer
+- Authentication & Security: JWT (JSON Web Tokens), bcryptjs, express-rate-limit
+- Email Service: Nodemailer (Ethereal test SMTP)
+- Structured Logging: Winston (JSON format)
+- Testing & CI/CD: Jest, Supertest, GitHub Actions
 - Containerization: Docker, Docker Compose
 
 ## Requirements
@@ -35,3 +37,9 @@ docker compose up --build
 - Server-side input validation and file format verification
 - Informative animated toast notifications for success and error messages
 - Multi-container Docker deployment with multi-stage build
+- Role-Based Access Control (RBAC) based on temporary JWT keys
+- HTTP Error Semantics: Strict compliance with RFC standards
+- Brute-Force Protection: IP-based rate limiting on login endpoint
+- Active Session Management: Tracking of client IP addresses and User-Agent headers with real-time remote session revocation
+- Password Reset via Email: Time-limited crypto tokens sent via Nodemailer
+- Structured Logging

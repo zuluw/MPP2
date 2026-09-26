@@ -1,7 +1,10 @@
 import React from 'react';
 
-export default function IssueCard({ issue, onEdit, onDelete }) {
+export default function IssueCard({ issue, userRole, onEdit, onDelete }) {
     const formattedDate = new Date(issue.due_date).toLocaleDateString();
+
+    const canEdit = userRole === 'admin' || userRole === 'developer';
+    const canDelete = userRole === 'admin';
 
     return (
         <div className="issue-card">
@@ -41,12 +44,21 @@ export default function IssueCard({ issue, onEdit, onDelete }) {
                 </div>
 
                 <div className="actions">
-                    <button className="btn btn-secondary btn-sm" onClick={() => onEdit(issue)}>
-                        Edit
-                    </button>
-                    <button className="btn btn-danger btn-sm" onClick={() => onDelete(issue.id)}>
-                        Delete
-                    </button>
+                    {canEdit && (
+                        <button className="btn btn-secondary btn-sm" onClick={() => onEdit(issue)}>
+                            Edit
+                        </button>
+                    )}
+                    {canDelete && (
+                        <button className="btn btn-danger btn-sm" onClick={() => onDelete(issue.id)}>
+                            Delete
+                        </button>
+                    )}
+                    {!canEdit && !canDelete && (
+                        <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', fontStyle: 'italic' }}>
+                            Read-Only
+                        </span>
+                    )}
                 </div>
             </div>
         </div>

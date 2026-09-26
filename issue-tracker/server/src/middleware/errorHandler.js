@@ -1,7 +1,13 @@
 const multer = require('multer');
+const logger = require('../utils/logger');
 
 const errorHandler = (err, req, res, next) => {
-    console.error('SERVER ERROR:', err.message);
+    logger.error('Unhandled Server Exception', {
+        error: err.message,
+        stack: err.stack,
+        url: req.originalUrl,
+        method: req.method
+    });
 
     if (err instanceof multer.MulterError) {
         if (err.code === 'LIMIT_FILE_SIZE') {
